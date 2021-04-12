@@ -1,0 +1,26 @@
+CREATE TABLE house (
+	id integer PRIMARY KEY AUTOINCREMENT,
+	title varchar,
+	images varchar,
+	size integer,
+	location varchar,
+	city_id integer,
+	price integer,
+	energy varchar,
+	foundation_years datetime,
+	content varchar,
+	agency_id integer
+);
+
+CREATE TABLE city (
+	id binary PRIMARY KEY AUTOINCREMENT,
+	name varchar,
+	cp integer
+);
+
+CREATE TABLE agency (
+	id integer PRIMARY KEY AUTOINCREMENT,
+	name varchar,
+	location varchar,
+	city_id integer
+);
