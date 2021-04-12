@@ -40,7 +40,7 @@ class QuestembertAgency
       "price" => page.css(".houseSingle .price").children.text,
       "energy" => page.css(".houseSingle .energetic").children.text,
       "foundation_years" => page.css(".houseSingle .year").children.text,
-      "content" => page.css(".houseInfoBlock").children[5].text
+      "content" => page.css(".houseSingle .houseDescription").text
     }
     @all_data << @data_page
   end
