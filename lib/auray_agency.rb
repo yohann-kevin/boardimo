@@ -25,6 +25,7 @@ class AurayAgency
   def hash_data(page)
     @data_page = {
       "title" => page.css("#apropos h1").text,
+      "images" => page.css("#secion-ad .mr-3").attr("src").value,
       "size" => page.css("#single-ad-description").children[1].children[1].text,
       "location" => page.css("#single-ad-description").children[1].children[3].text,
       "price" => page.css("#single-ad-description").children[1].children[5].text,

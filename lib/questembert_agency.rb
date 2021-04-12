@@ -34,6 +34,7 @@ class QuestembertAgency
   def hash_data(page)
     @data_page = {
       "title" => page.css(".houseSingle .title").text,
+      "images" => page.css(".houseSingle .houseImg img").attr("src").value,
       "size" => page.css(".houseSingle .surface").children.text,
       "location" => page.css(".houseSingle .city").children.text,
       "price" => page.css(".houseSingle .price").children.text,

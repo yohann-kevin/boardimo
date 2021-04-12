@@ -25,6 +25,7 @@ class VannesAgency
   def hash_data(page)
     @data_page = {
       "title" => page.css("#titleSingleArticle").children[1].text,
+      "images" => page.css("#singleArticleImage img").attr("src").value,
       "size" => page.css("#singleArticle .size").text,
       "location" => page.css("#singleArticle .location").text,
       "price" => page.css("#singleArticle .price").text,
