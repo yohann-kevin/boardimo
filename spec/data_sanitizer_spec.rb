@@ -28,12 +28,12 @@ RSpec.describe DataSanitizer do
 
   it "return false if data is good" do
     data_sanitizer = DataSanitizer.new(good_data)
-    expect(data_sanitizer.check_data).to eql(false)
+    expect(data_sanitizer.spec_data).to eql(false)
   end
 
   it "return true if data is bad" do
     data_sanitizer = DataSanitizer.new(dark_data)
-    expect(data_sanitizer.check_data).to eql(true)
+    expect(data_sanitizer.spec_data).to eql(true)
   end
 
 end

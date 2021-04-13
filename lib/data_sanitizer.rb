@@ -6,6 +6,11 @@ class DataSanitizer
     @invalid_data = false
   end
 
+  def spec_data
+    check_data
+    return @invalid_data
+  end
+
   def check_data
     check_data_type
     check_data_size

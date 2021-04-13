@@ -30,7 +30,6 @@ class Database
     puts data["title"]
     data["city_id"] = city_id.flatten.first
     data["agency_id"] = agency_id.flatten.first
-    #{data['title']}, #{data['images']}, #{data['size']}, #{data['location']}, #{city_id}, #{data['price']}, #{data['energy']}, #{data['foundation_years']}, #{data['content']}, #{agency_id}
     @db.execute("INSERT OR IGNORE INTO House VALUES(:id, :title, :images, :size, :location, :city_id, :price, :energy, :foundation_years, :content, :agency_id)", data.transform_keys(&:to_sym))
   end
 end
