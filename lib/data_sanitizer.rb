@@ -9,8 +9,8 @@ class DataSanitizer
   def check_data
     check_data_type
     check_data_size
-    run_data unless @invalid_data
-    @invalid_data
+    return run_data unless @invalid_data
+    # @invalid_data
   end
 
   def check_data_type
@@ -31,13 +31,14 @@ class DataSanitizer
         puts e
       end
     end
-    puts @initial_data[0]
+    # puts @initial_data[0]
+    @initial_data
   end
 
   def transform_data(data)
     data["images"] = rewrite_image_root(data["images"])
     data["size"] = data["size"][0...-1].tr("m²", "").to_i
-    data["location"] = data["location"].tr("1234567890 ", "")
+    data["location"] = data["location"].tr("1234567890 ", "").downcase
     data["price"] = data["price"].tr("€* ", "").to_i
     data["energy"] = data["energy"].tr(" ", "")
     data["foundation_years"] = data["foundation_years"].tr(" ", "").to_i
