@@ -19,7 +19,7 @@ class AurayAgency
       hash_data(page)
       index += 1
     end
-    puts @all_data[14]
+    return @all_data
   end
 
   def hash_data(page)
@@ -30,7 +30,7 @@ class AurayAgency
       "location" => page.css("#single-ad-description").children[1].children[3].text,
       "price" => page.css("#single-ad-description").children[1].children[5].text,
       "energy" => page.css("#single-ad-description").children[1].children[7].text,
-      "fundation_years" => page.css("#single-ad-description").children[1].children[9].text,
+      "foundation_years" => page.css("#single-ad-description").children[1].children[9].text,
       "content" => page.css("#single-ad-description").children[3].text
     }
     @all_data << @data_page

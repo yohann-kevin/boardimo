@@ -28,18 +28,18 @@ class QuestembertAgency
       hash_data(page)
       index += 1
     end
-    puts @all_data[1]
+    return @all_data
   end
 
   def hash_data(page)
     @data_page = {
       "title" => page.css(".houseSingle .title").text,
       "images" => page.css(".houseSingle .houseImg img").attr("src").value,
-      "size" => page.css(".houseSingle .surface").children.text,
-      "location" => page.css(".houseSingle .city").children.text,
-      "price" => page.css(".houseSingle .price").children.text,
-      "energy" => page.css(".houseSingle .energetic").children.text,
-      "foundation_years" => page.css(".houseSingle .year").children.text,
+      "size" => page.css(".houseSingle .surface").children.text.tr("Surface :", ""),
+      "location" => page.css(".houseSingle .city").children.text.delete_prefix("Ville :"),
+      "price" => page.css(".houseSingle .price").children.text.tr("Prix :", ""),
+      "energy" => page.css(".houseSingle .energetic").children.text.delete_prefix("Classe énergie :"),
+      "foundation_years" => page.css(".houseSingle .year").children.text.tr("Année :", ""),
       "content" => page.css(".houseSingle .houseDescription").text
     }
     @all_data << @data_page

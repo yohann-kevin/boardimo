@@ -13,13 +13,13 @@ class VannesAgency
   def find_data_agency
     index = 1
     max_page = 15
-    while index < max_page
+    while index <= max_page
       html = URI.open("#{@url}#{index}#{@files_extension}")
       page = Nokogiri::HTML(html)
       hash_data(page)
       index += 1
     end
-    puts @all_data[1]
+    return @all_data
   end
 
   def hash_data(page)
