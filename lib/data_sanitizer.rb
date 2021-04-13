@@ -10,6 +10,7 @@ class DataSanitizer
     check_data_type
     check_data_size
     run_data unless @invalid_data
+    @invalid_data
   end
 
   def check_data_type
