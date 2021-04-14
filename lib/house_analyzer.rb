@@ -6,6 +6,7 @@ class HouseAnalyzer
     @price = data["price"]
     @location = data["location"]
     @foundation_years = data["foundation"]
+    @energy = data["energy"]
   end
 
   def compute_price_average
@@ -30,5 +31,41 @@ class HouseAnalyzer
     end
     # house age average
     house_age_average /= all_foundation_years.length
+  end
+
+  def check_energetic_note
+    puts @energy
+    if @energy == "A" || @energy == "B" || @energy == "C"
+      energy_note = compute_energy_economy
+    else
+      energy_note = compute_energy_expanse
+    end
+    puts energy_note
+  end
+
+  def compute_energy_economy
+    economy = case @energy
+              when "A"
+                216.6 * @size
+              when "B"
+                161.5 * @size
+              else
+                81.7 * @size
+              end
+    [economy, true]
+  end
+
+  def compute_energy_expanse
+    expanse = case @energy
+              when "D"
+                30.4 * @size
+              when "E"
+                76 * @size
+              when "F"
+                188.1 * @size
+              else
+                340 * @size
+              end
+    [expanse, false]
   end
 end

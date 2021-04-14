@@ -59,7 +59,7 @@ class Controller
 
   def init
     # puts @data_house
-    HouseAnalyzer.new(@data_house).compute_foundation_years_average
+    HouseAnalyzer.new(@data_house).check_energetic_note
     [200, { "Content-Type" => "application/json" }, @data_house.to_json]
   end
 end
