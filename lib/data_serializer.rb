@@ -16,7 +16,7 @@ class DataSerializer
       "foundation_years" => @initial_data[8],
       "content" => @initial_data[9]
     }
-    puts @serialized_data
+    # puts @serialized_data
   end
 
   def build_img_roots(path)

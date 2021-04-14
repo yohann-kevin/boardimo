@@ -56,6 +56,7 @@ class Controller
   end
 
   def init
-    puts "plop"
+    puts @data_house
+    [200, { "Content-Type" => "application/json" }, @data_house.to_json]
   end
 end
