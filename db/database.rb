@@ -3,7 +3,7 @@ require "pry"
 
 class Database
   def initialize
-    @db = SQLite3::Database.open "../db/boardimo.db"
+    @db = SQLite3::Database.open "./db/boardimo.db"
   end
 
   def find_all_city
@@ -32,6 +32,10 @@ class Database
 
   def find_house_id_with_title(title)
     @db.execute "SELECT id FROM house WHERE title = '#{title}'"
+  end
+
+  def find_house_with_id(id)
+    @db.execute "SELECT * FROM house WHERE id = #{id}"
   end
 
   def add_data_house(data, city_id, agency_id)

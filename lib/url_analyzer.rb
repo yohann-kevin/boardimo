@@ -1,7 +1,8 @@
-require "../db/database"
-require "./vannes_agency"
-require "./auray_agency"
-require "./questembert_agency"
+require "./db/database"
+require "./lib/vannes_agency"
+require "./lib/auray_agency"
+require "./lib/questembert_agency"
+require "./lib/data_serializer"
 
 class UrlAnalyzer
   def initialize(params)
@@ -48,12 +49,16 @@ class UrlAnalyzer
   end
 
   def analyze_house(title)
-    house_id = Database.new.find_house_id_with_title(title)
-    puts house_id
+    find_house_data(Database.new.find_house_id_with_title(title))
+  end
+
+  def find_house_data(id)
+    house_data = Database.new.find_house_with_id(id[0].to_s.tr("[]", "").to_i)
+    DataSerializer.new(house_data[0], @arg["arg"]).format_data
   end
 end
 # vannes
-UrlAnalyzer.new({ "arg" => "https://simply-home.herokuapp.com/house1.php" }).check_url
+# UrlAnalyzer.new({ "arg" => "https://simply-home.herokuapp.com/house1.php" }).check_url
 # auray
 # UrlAnalyzer.new({ "arg" => "https://simply-home-cda.herokuapp.com/pages/1.php" }).check_url
 # questembert

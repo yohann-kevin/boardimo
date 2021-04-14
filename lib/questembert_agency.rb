@@ -46,7 +46,6 @@ class QuestembertAgency
   end
 
   def find_title(url)
-    puts url
     html = URI.open(url)
     page = Nokogiri::HTML(html)
     page.css(".houseSingle .title").text

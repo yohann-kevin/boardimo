@@ -6,12 +6,7 @@ require "./lib/url_analyzer"
 
 class Controller
   def initialize
-    # @basket_ui = ""
-    # @result = ""
-    # @money_format = "cents"
-    # @format_change = false
-    # @toto = Database.new
-    # @all_symbol = Emoji.new("all").all_symbol
+    @data_house = {}
   end
 
   # def index
@@ -56,7 +51,7 @@ class Controller
   # end
 
   def analyze_data_entry(params)
-    UrlAnalyzer.new(params).check_url
+    @data_house = UrlAnalyzer.new(params).check_url
     [302, { "Location" => "/" }, []]
   end
 
