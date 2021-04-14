@@ -44,6 +44,13 @@ class QuestembertAgency
     }
     @all_data << @data_page
   end
+
+  def find_title(url)
+    puts url
+    html = URI.open(url)
+    page = Nokogiri::HTML(html)
+    page.css(".houseSingle .title").text
+  end
 end
 
 QuestembertAgency.new.find_data_agency

@@ -2,6 +2,8 @@ require "tilt"
 require "erb"
 require "json"
 
+require "./lib/url_analyzer"
+
 class Controller
   def initialize
     # @basket_ui = ""
@@ -52,6 +54,11 @@ class Controller
   #   products = { "products" => fruits, "results" => @result, "basket" => @basket_ui, "symbol" => @all_symbol }
   #   [200, { "Content-Type" => "application/json" }, products.to_json]
   # end
+
+  def analyze_data_entry(params)
+    UrlAnalyzer.new(params).check_url
+    [302, { "Location" => "/" }, []]
+  end
 
   def init
     puts "plop"

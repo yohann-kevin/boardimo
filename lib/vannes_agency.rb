@@ -35,6 +35,13 @@ class VannesAgency
     }
     @all_data << @data_page
   end
+
+  def find_title(url)
+    puts url
+    html = URI.open(url)
+    page = Nokogiri::HTML(html)
+    page.css("#titleSingleArticle").children[1].text
+  end
 end
 
 VannesAgency.new.find_data_agency

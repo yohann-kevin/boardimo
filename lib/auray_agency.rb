@@ -35,6 +35,13 @@ class AurayAgency
     }
     @all_data << @data_page
   end
+
+  def find_title(url)
+    puts url
+    html = URI.open(url)
+    page = Nokogiri::HTML(html)
+    page.css("#apropos h1").text
+  end
 end
 
 AurayAgency.new.find_data_agency

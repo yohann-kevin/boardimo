@@ -14,13 +14,15 @@ class Router
 
     params = {}
     params.merge!(body ? JSON.parse(body) : {})
-    roots(path)
+    roots(path, params)
   end
 
-  def roots(path)
+  def roots(path, params)
     case path
     when "/"
       controller.init
+    when "/add_data"
+      controller.analyze_data_entry(params)
     end
   end
 end
