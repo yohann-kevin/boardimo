@@ -84,4 +84,37 @@ class HouseAnalyzer
               end
     [expanse, false]
   end
+
+  def check_age_and_energy(price_meter, is_energy)
+    if is_energy
+      value = check_energetic_note
+    else
+      value = compute_house_age
+    end
+    compute_age_and_energy(price_meter, value)
+  end
+
+  def compute_age_and_energy(price_meter, value)
+    if value[1]
+      price_meter - (value[0] / @size)
+    else
+      price_meter + (value[0] / @size)
+    end
+  end
+
+  def compute_real_house_price
+    price_square_meter = check_age_and_energy(@price / @size, true)
+    price_square_meter = check_age_and_energy(price_square_meter, false)
+    price_square_meter
+  end
+
+  def find_analyze
+    {
+      "house_average" => compute_price_average,
+      "years_average" => compute_foundation_years_average,
+      "energetic_value" => check_energetic_note,
+      "house_age_value" => compute_house_age,
+      "real_square_meter_price" => compute_real_house_price
+    }
+  end
 end
