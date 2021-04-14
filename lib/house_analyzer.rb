@@ -24,13 +24,11 @@ class HouseAnalyzer
   def compute_foundation_years_average
     all_foundation_years = Database.new.find_house_foundation_years(@location)
     house_age_average = 0
-    # puts all_foundation_years
     all_foundation_years.each do |year|
       year.to_s.tr("[]", "").to_i
-      all_foundation_years.delete(year) if year[0].zero?
-      house_age_average += (2021 - year[0])
+      year[0].zero? || year[0] < 1600 ? all_foundation_years.delete(year) : house_age_average += (2021 - year[0])
     end
-    house_age_average = house_age_average / all_foundation_years.length
-    puts house_age_average
+    # house age average
+    house_age_average /= all_foundation_years.length
   end
 end
