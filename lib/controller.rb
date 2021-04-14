@@ -3,6 +3,7 @@ require "erb"
 require "json"
 
 require "./lib/url_analyzer"
+require "./lib/house_analyzer"
 
 class Controller
   def initialize
@@ -51,12 +52,14 @@ class Controller
   # end
 
   def analyze_data_entry(params)
-    @data_house = UrlAnalyzer.new(params).check_url
+    param = { "arg" => "https://simply-home.herokuapp.com/house1.php" }
+    @data_house = UrlAnalyzer.new(param).check_url
     [302, { "Location" => "/" }, []]
   end
 
   def init
-    puts @data_house
+    # puts @data_house
+    HouseAnalyzer.new(@data_house).compute_foundation_years_average
     [200, { "Content-Type" => "application/json" }, @data_house.to_json]
   end
 end

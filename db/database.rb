@@ -38,6 +38,18 @@ class Database
     @db.execute "SELECT * FROM house WHERE id = #{id}"
   end
 
+  def find_house_price(location)
+    @db.execute "SELECT price FROM house WHERE location = '#{location}'"
+  end
+
+  def find_house_size(location)
+    @db.execute "SELECT size FROM house WHERE location = '#{location}'"
+  end
+
+  def find_house_foundation_years(location)
+    @db.execute "SELECT foundation_years FROM house WHERE location = '#{location}'"
+  end
+
   def add_data_house(data, city_id, agency_id)
     puts data["title"]
     data["city_id"] = city_id.flatten.first
