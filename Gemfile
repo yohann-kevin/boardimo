@@ -10,3 +10,9 @@ gem "sqlite3"
 gem "rspec"
 # nokogiri
 gem "nokogiri"
+# Generic interface of ruby web servers
+gem "rack"
+# Ruby web server
+gem "thin"
+# Generic interface of different Ruby template engines
+gem "tilt"
