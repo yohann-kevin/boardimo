@@ -1,9 +1,9 @@
 require "pry"
-require "./lib/auray_agency.rb"
-require "./lib/vannes_agency.rb"
-require "./lib/questembert_agency.rb"
-require "./lib/data_sanitizer.rb"
-require "./db/database.rb"
+require "./lib/auray_agency"
+require "./lib/vannes_agency"
+require "./lib/questembert_agency"
+require "./lib/data_sanitizer"
+require "./db/database"
 
 class DataFinder
   def initialize
@@ -17,14 +17,18 @@ class DataFinder
   def find_data
     data_auray = DataSanitizer.new(@auray_data).check_data
     post_data(data_auray, @agency_location[0])
+    data_vannes = DataSanitizer.new(@vannes_data).check_data
+    post_data(data_vannes, @agency_location[1])
+    data_questembert = DataSanitizer.new(@questembert_data).check_data
+    post_data(data_questembert, @agency_location[2])
   end
 
   def post_data(data, location_agency)
-    data_city_id = @database.find_city_id(data[0]["location"])
-    puts data_city_id
-    data_agency_id = @database.find_agency_id(location_agency)
-    puts data_agency_id
-    @database.add_data_house(data[0], data_city_id, data_agency_id)
+    data.each do |el|
+      data_city_id = @database.find_city_id(el["location"])
+      data_agency_id = @database.find_agency_id(location_agency)
+      @database.add_data_house(el, data_city_id, data_agency_id)
+    end
   end
 end
 
