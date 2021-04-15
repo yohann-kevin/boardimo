@@ -85,6 +85,12 @@ class HouseAnalyzer
     [expanse, false]
   end
 
+  def compute_energy_average
+    best_energy_house = Database.new.find_average_energy(@energy)
+    all_house_count = Database.new.count_all_house
+    (best_energy_house[0][0].to_f / all_house_count[0][0].to_f) * 100
+  end
+
   def check_age_and_energy(price_meter, is_energy)
     if is_energy
       value = check_energetic_note
@@ -108,13 +114,24 @@ class HouseAnalyzer
     price_square_meter
   end
 
+  def compute_average_age_expanse
+    years_average = compute_foundation_years_average
+    if years_average < 20
+      compute_house_age_economy(years_average)[0]
+    else
+      compute_house_age_expanse(years_average)[0]
+    end
+  end
+
   def find_analyze
     {
       "house_average" => compute_price_average,
       "years_average" => compute_foundation_years_average,
       "energetic_value" => check_energetic_note,
       "house_age_value" => compute_house_age,
-      "real_square_meter_price" => compute_real_house_price
+      "real_square_meter_price" => compute_real_house_price,
+      "percent-energy" => compute_energy_average,
+      "average_expanse_age" => compute_average_age_expanse
     }
   end
 end

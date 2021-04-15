@@ -50,6 +50,14 @@ class Database
     @db.execute "SELECT foundation_years FROM house WHERE location = '#{location}'"
   end
 
+  def find_average_energy(house_energy)
+    @db.execute "SELECT count(*) FROM house WHERE '#{house_energy}' > energy"
+  end
+
+  def count_all_house
+    @db.execute "SELECT count(*) FROM house"
+  end
+
   def add_data_house(data, city_id, agency_id)
     puts data["title"]
     data["city_id"] = city_id.flatten.first
